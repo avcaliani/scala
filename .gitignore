@@ -1,2 +1,7 @@
+target
 *.class
 *.log
+
+# IDEA
+.idea
+*.iml
