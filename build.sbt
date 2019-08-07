@@ -1,4 +1,4 @@
-name := "scala-app"
+name := "spark-app"
 version := "19.08.00"
 
 scalaVersion := "2.13.0"
