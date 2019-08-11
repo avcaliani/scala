@@ -43,7 +43,7 @@ spark-shell
 # THE END
 ```
 
-## SBT Commands
+## SBT
 - `sbt clean`          - Removes all generated files from the target directory.
 - `sbt compile`        - Compiles source code files that are in src/main/scala, src/main/java, and the root directory of the project.
 - `sbt console`        - Compiles the source code files in the project, puts them on the classpath, and starts the Scala interpreter (REPL).
