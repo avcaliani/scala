@@ -56,7 +56,7 @@ spark-shell
 - `sbt publish-local`  - Publishes your project to a local Ivy repository. See Recipe 18.15, “Publishing Your Library”. reload Reloads the build definition files (build.sbt, project/.scala, and project/.sbt), which is necessary if you change them while you’re in an interactive SBT session.
 - `sbt run`            - Compiles your code, and runs the main class from your project, in the same JVM as SBT. If your project has multiple main methods (or objects that extend App), you’ll be prompted to select one to run.
 - `sbt test`           - Compiles and runs all tests.
-- `test:console`       - Compiles the source code files in the project, puts them on the classpath, and starts the Scala interpreter (REPL) in “test” mode (so you can use ScalaTest, Specs2, ScalaCheck, etc.).
+- `sbt test:console`       - Compiles the source code files in the project, puts them on the classpath, and starts the Scala interpreter (REPL) in “test” mode (so you can use ScalaTest, Specs2, ScalaCheck, etc.).
 - `sbt update`         - Updates external dependencies.
 
 ## Related Links
