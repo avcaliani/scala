@@ -17,7 +17,7 @@ object Main extends App with Props {
   val OUT_PATH_ERR   = getProperty(s"hdfs.output.error")
   val OUT_PATH_DEBUG = getProperty(s"hdfs.output.debug")
 
-  val sc = new SparkConf().setMaster("local[*]").setAppName(APP_NAME)
+  val sc = new SparkConf().setMaster("local[4]").setAppName(APP_NAME)
   val ss = SparkSession.builder().config(sc).getOrCreate()
   val fs = new FSUtil(ss, FileSystem.get(ss.sparkContext.hadoopConfiguration))
 
