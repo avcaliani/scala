@@ -2,8 +2,9 @@ package br.avcaliani.scala.app.util
 
 import java.util.UUID
 
+import br.avcaliani.scala.app.Props
 import org.apache.hadoop.fs.{FileSystem, FileUtil, Path}
-import org.apache.spark.sql.{DataFrame, Row, SaveMode, SparkSession}
+import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 /**
  * File System Util.
@@ -11,9 +12,9 @@ import org.apache.spark.sql.{DataFrame, Row, SaveMode, SparkSession}
  * @param ss {@link SparkSession}.
  * @param fs {@link FileSystem}.
  */
-class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable {
+class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable with Props {
 
-  val tmpDir = s"tmp/${ UUID.randomUUID().toString }"
+  val tmpDir = s"${ getProperty(s"hdfs.output.tmp") }/${ UUID.randomUUID().toString }"
 
   /**
    * Read file data and put it into a {@link DataFrame} structure.
@@ -36,11 +37,11 @@ class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable {
    * @return {@code true} or {@code false}
    */
   def write(path: String, df: DataFrame, delimiter: String = ","): Boolean = {
-    header(df).union(df)
-      // .coalesce(1)
+      df
+      .coalesce(1)
       .write
       .mode(SaveMode.Overwrite)
-      .option("header", "false")
+      .option("header", "true")
       .option("delimiter", delimiter)
       .csv(tmpDir)
 
@@ -52,12 +53,6 @@ class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable {
     FileUtil.copyMerge(
       fs, tmp, fs, dst, true, ss.sparkContext.hadoopConfiguration, null
     )
-  }
-
-  private def header(df: DataFrame): DataFrame = {
-    val header = df.schema.fields.map(_.name)
-    import scala.collection.JavaConverters._
-    ss.createDataFrame(List(Row.fromSeq(header.toSeq)).asJava, df.schema)
   }
 
 }

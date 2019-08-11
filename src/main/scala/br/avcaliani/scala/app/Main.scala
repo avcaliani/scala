@@ -11,10 +11,11 @@ import org.slf4j.LoggerFactory
 object Main extends App with Props {
 
   val log = LoggerFactory.getLogger(getClass)
-  val APP_NAME     = getProperty(s"app.name")
-  val DATA_PATH    = getProperty(s"hdfs.data")
-  val OUT_PATH_OK  = getProperty(s"hdfs.output.success")
-  val OUT_PATH_ERR = getProperty(s"hdfs.output.error")
+  val APP_NAME       = getProperty(s"app.name")
+  val DATA_PATH      = getProperty(s"hdfs.data")
+  val OUT_PATH_OK    = getProperty(s"hdfs.output.success")
+  val OUT_PATH_ERR   = getProperty(s"hdfs.output.error")
+  val OUT_PATH_DEBUG = getProperty(s"hdfs.output.debug")
 
   val sc = new SparkConf().setMaster("local[*]").setAppName(APP_NAME)
   val ss = SparkSession.builder().config(sc).getOrCreate()
@@ -37,6 +38,7 @@ object Main extends App with Props {
   Timer.start()
   fs.write(OUT_PATH_OK, dfOk.drop(dropColumns: _*))
   fs.write(OUT_PATH_ERR, dfErr.drop(dropColumns: _*))
+  fs.write(OUT_PATH_DEBUG, dfValidated)
   log.info(s"Task::Write -> ${ Timer.stop() }s")
 
 }
