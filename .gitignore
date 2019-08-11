@@ -1,7 +1,12 @@
+# Generated Files
 target
+output
 *.class
 *.log
 
 # IDEA
 .idea
 *.iml
+
+# OS
+*.DS_Store
