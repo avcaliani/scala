@@ -24,7 +24,7 @@ object Main extends App with Props {
 
   Timer.start()
   val df: DataFrame = fs.read(DATA_PATH)
-  log.info(s"Task::Read -> ${ Timer.stop() }s")
+  log.debug(s"Task::Read -> ${ Timer.stop() }s")
 
 
   Timer.start()
@@ -32,13 +32,13 @@ object Main extends App with Props {
   val dropColumns: Array[String] = dfValidated.columns.filter(_.endsWith("_valid"))
   val dfOk  = dfValidated.filter(col("is_valid") === true)
   val dfErr = dfValidated.filter(col("is_valid") === false)
-  log.info(s"Task::Validate -> ${ Timer.stop() }s")
+  log.debug(s"Task::Validate -> ${ Timer.stop() }s")
 
 
   Timer.start()
   fs.write(OUT_PATH_OK, dfOk.drop(dropColumns: _*))
   fs.write(OUT_PATH_ERR, dfErr.drop(dropColumns: _*))
   fs.write(OUT_PATH_DEBUG, dfValidated)
-  log.info(s"Task::Write -> ${ Timer.stop() }s")
+  log.debug(s"Task::Write -> ${ Timer.stop() }s")
 
 }

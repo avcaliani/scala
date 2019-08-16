@@ -5,6 +5,7 @@ import java.util.UUID
 import br.avcaliani.scala.app.Props
 import org.apache.hadoop.fs.{FileSystem, FileUtil, Path}
 import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
+import org.slf4j.LoggerFactory
 
 /**
  * File System Util.
@@ -14,6 +15,7 @@ import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
  */
 class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable with Props {
 
+  val log = LoggerFactory.getLogger(getClass)
   val tmpDir = s"${ getProperty(s"hdfs.output.tmp") }/${ UUID.randomUUID().toString }"
 
   /**
@@ -23,10 +25,16 @@ class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable with Props {
    * @param delimiter Optional Delimiter.
    * @return {@link DataFrame}.
    */
-  def read(path: String, delimiter: String = ","): DataFrame = ss.read
+  def read(path: String, delimiter: String = ","): DataFrame = {
+    log.info(s"Reading file '$path'...")
+    val df: DataFrame = ss
+      .read
       .option("header", "true")
       .option("delimiter", delimiter)
       .csv(path)
+    log.info(s"OK")
+    df
+  }
 
   /**
    * Write {@link DataFrame} into a file.
@@ -36,7 +44,7 @@ class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable with Props {
    * @param delimiter Optional Delimiter.
    * @return {@code true} or {@code false}
    */
-  def write(path: String, df: DataFrame, delimiter: String = ","): Boolean = {
+  def write(path: String, df: DataFrame, delimiter: String = ","): Unit = {
       df
       .coalesce(1)
       .write
@@ -53,6 +61,7 @@ class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable with Props {
     FileUtil.copyMerge(
       fs, tmp, fs, dst, true, ss.sparkContext.hadoopConfiguration, null
     )
+    log.info(s"File saved at '$path'")
   }
 
 }

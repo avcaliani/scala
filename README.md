@@ -43,6 +43,14 @@ spark-shell
 # THE END
 ```
 
+## Quick Start
+
+```sh
+# Execute "run.sh" script
+# After executing keep your eyes on "output" dir ;)
+sh run.sh
+```
+
 ## SBT
 - `sbt clean`          - Removes all generated files from the target directory.
 - `sbt compile`        - Compiles source code files that are in src/main/scala, src/main/java, and the root directory of the project.
