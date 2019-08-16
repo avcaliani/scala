@@ -1,4 +1,4 @@
-# ⚖ Spark App
+# 🌠 Spark App
 By Anthony Vilarim Caliani
 
 [![#](https://img.shields.io/badge/licence-MIT-blue.svg)](#) [![#](https://img.shields.io/badge/open--jdk-1.8.x-red.svg)](#) [![#](https://img.shields.io/badge/scala-2.11.x-mediumvioletred.svg)](#) [![#](https://img.shields.io/badge/apache--spark-2.4.3-darkorange.svg)](#)
