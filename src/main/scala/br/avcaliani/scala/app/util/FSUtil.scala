@@ -51,6 +51,8 @@ class FSUtil(ss: SparkSession, fs: FileSystem) extends Serializable with Props {
       .mode(SaveMode.Overwrite)
       .option("header", "true")
       .option("delimiter", delimiter)
+      .option("nullValue", null)
+      .option("emptyValue", null)
       .csv(tmpDir)
 
     val tmp = new Path(tmpDir)
