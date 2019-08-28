@@ -10,6 +10,7 @@
 # Run Information   : This script needs to be executed manually.
 # Standard Output   : Console Output
 # Error Log         : Console Output
+# Further Help      : https://www.inovex.de/blog/247-spark-streaming-on-yarn-in-production/
 #
 PROJECT_DIR="./"
 JAR_DIR="target/scala-2.11"
