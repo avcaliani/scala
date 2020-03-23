@@ -6,7 +6,17 @@ By Anthony Vilarim Caliani
 ## Description
 This is my Apache Spark project. Here you will find some stuff that I've done while I was learning about working with Spark and Scala.
 
-## Before Installing
+## Quick Start
+
+```sh
+# Execute "run.sh" script
+# After executing keep your eyes on "output" dir ;)
+sh run.sh
+```
+
+## Further Help
+
+### Before Installing Apache Spark
 - You must have Java installed
 - You must have `$JAVA_HOME` environment variable configured
 - Download [_Apache Spark_](https://spark.apache.org/downloads.html)
@@ -14,7 +24,7 @@ This is my Apache Spark project. Here you will find some stuff that I've done wh
 
 Now let's do this!
 
-## Installing and Configuring Spark
+### Installing and Configuring Spark
 
 ```sh
 # First, we need to configure some environment variables.
@@ -43,15 +53,7 @@ spark-shell
 # THE END
 ```
 
-## Quick Start
-
-```sh
-# Execute "run.sh" script
-# After executing keep your eyes on "output" dir ;)
-sh run.sh
-```
-
-## SBT
+#### SBT
 - `sbt clean`          - Removes all generated files from the target directory.
 - `sbt compile`        - Compiles source code files that are in src/main/scala, src/main/java, and the root directory of the project.
 - `sbt console`        - Compiles the source code files in the project, puts them on the classpath, and starts the Scala interpreter (REPL).
