@@ -71,6 +71,3 @@ sh run.sh
 - [Apache Spark: Official Website](https://spark.apache.org)
 - [SBT Commands](https://alvinalexander.com/scala/sbt-how-to-compile-run-package-scala-project)
 - [Kaggle: User Names Dataset](https://www.kaggle.com/datagov/usa-names)
----
-
-_You can find [@avcaliani](#) at [GitHub](https://github.com/avcaliani) or [GitLab](https://gitlab.com/avcaliani)._
