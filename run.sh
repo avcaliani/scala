@@ -3,15 +3,10 @@
 # Script Name       : run.sh
 # Author            : Anthony Vilarim Caliani
 # GitHub            : https://github.com/avcaliani
-# Date              : 2019.08.xx
+# Date              : 2020.04.xx
 # License           : MIT
 #
 # Description       : The following script runs "spark-app" through Spark Submit.
-# Run Information   : This script needs to be executed manually.
-# Standard Output   : Console Output
-# Error Log         : Console Output
-# Further Help      : https://www.inovex.de/blog/247-spark-streaming-on-yarn-in-production/
-#
 PROJECT_DIR="./"
 JAR_DIR="target/scala-2.11"
 
@@ -25,7 +20,7 @@ ERROR="\033[0;31mERROR\033[00m:"
 
 is_installed() {
     if [ -z $(command -v $1) ]; then
-      echo "${ERROR} '$1' not found, please check it first."
+      echo -e "${ERROR} '$1' not found, please check it first."
       exit 0
     fi
 }
@@ -40,7 +35,7 @@ echo "
   / __| _ __  __ _  _ _ | |__
   \\__ \\| '_ \/ _\` || '_|| / /
   |___/| .__/\\__,_||_|  |_\\_\\
-       |_|      APP v19.08.00
+       |_|      APP v20.04.00
 "
 
 is_installed "java"
@@ -49,13 +44,13 @@ is_installed "sbt"
 
 cd ${PROJECT_DIR}
 
-echo "${INFO} Building project..."
+echo -e "${INFO} Building project..."
 sbt clean compile package
 
 jar_file=$(ls ${JAR_DIR}/*.jar)
-echo "${INFO} JAR File -> '${jar_file}'"
+echo -e "${INFO} JAR File -> '${jar_file}'"
 
-echo "${INFO} Starting Spark..."
+echo -e "${INFO} Starting Spark..."
 spark-submit \
     --files log4j.properties \
     --driver-java-options "
@@ -64,4 +59,4 @@ spark-submit \
     " \
     ${jar_file}
 
-echo "${INFO} Process has been finished \\o/"
+echo -e "${INFO} Process has been finished \\o/"

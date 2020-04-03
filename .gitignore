@@ -1,6 +1,7 @@
 # Generated Files
 target
 output
+tmp
 *.class
 *.log
 
