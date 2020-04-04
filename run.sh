@@ -8,7 +8,7 @@
 #
 # Description       : The following script runs "spark-app" through Spark Submit.
 PROJECT_DIR="./"
-JAR_DIR="target/scala-2.11"
+JAR_DIR="target/scala-*"
 
 INFO="\033[0;34mINFO\033[00m:"
 ERROR="\033[0;31mERROR\033[00m:"
@@ -52,6 +52,7 @@ echo -e "${INFO} JAR File -> '${jar_file}'"
 
 echo -e "${INFO} Starting Spark..."
 spark-submit \
+    --master local \
     --files log4j.properties \
     --driver-java-options "
         -Dlog4j.debug
