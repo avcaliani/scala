@@ -8,9 +8,17 @@ This is my Apache Spark project. Here you will find some stuff that I've done wh
 ## Quick Start
 
 ```sh
-# Execute "run.sh" script
-# After executing keep your eyes on "output" dir ;)
-sh run.sh
+# First...
+docker-compose build
+
+# Upping the container
+docker-compose up -d
+
+# And then...
+docker-compose run spark /app/run.sh
+
+# When you finish, exit from container and...
+docker-compose down
 ```
 
 ## Related Links
