@@ -15,7 +15,7 @@ docker-compose build
 docker-compose up -d
 
 # And then...
-docker-compose run spark /app/run.sh
+docker-compose exec spark /app/run.sh
 
 # When you finish, exit from container and...
 docker-compose down
